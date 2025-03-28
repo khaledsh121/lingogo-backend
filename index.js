@@ -22,6 +22,7 @@ const corsOptions = {
   origin: "http://localhost:3000", // Adjust if frontend runs on a different port
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"], // Allow the Authorization header
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
 
 app.use(cors(corsOptions));
