@@ -1,0 +1,29 @@
+{
+  "name": "lingogobackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.8.2",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "google-translate-api-x": "^10.7.2",
+    "googleapis": "^146.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.14.2",
+    "mongoose": "^8.12.1",
+    "ollama": "^0.5.14",
+    "openai": "^4.87.3",
+    "path": "^0.12.7",
+    "puppeteer": "^24.4.0",
+    "user-agents": "^1.1.486"
+  }
+}
