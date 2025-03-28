@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.92845fcb.css",
-    "main.js": "/static/js/main.c2f5c392.js",
+    "main.css": "/static/css/main.ce968945.css",
+    "main.js": "/static/js/main.d93f2cf0.js",
     "static/js/488.3a552b87.chunk.js": "/static/js/488.3a552b87.chunk.js",
     "static/media/WellcomeImg.png": "/static/media/WellcomeImg.57bf9a5d33d48ca24f95.png",
     "static/media/Heart.png": "/static/media/Heart.66cd32c8a379830f858e.png",
@@ -20,15 +20,15 @@
     "static/media/aiAssisstant.png": "/static/media/aiAssisstant.0a73e6858fdc36ee182d.png",
     "static/media/realscenario.png": "/static/media/realscenario.c6fb991f5022d8e72717.png",
     "static/media/ActiveLevel.png": "/static/media/ActiveLevel.219010ac7c17a89cf2cd.png",
-    "static/media/passwordIcon.svg": "/static/media/passwordIcon.6ceb1472bb847eeff8ed91daa4e2afe2.svg",
+    "static/media/passwordIcon.svg": "/static/media/passwordIcon.6ae5893e6883c68202579e2e0bc7f67d.svg",
     "index.html": "/index.html",
-    "static/media/userIcon.svg": "/static/media/userIcon.a6eac1ac64dce5f711c0d2edc9e0c5f1.svg",
-    "main.92845fcb.css.map": "/static/css/main.92845fcb.css.map",
-    "main.c2f5c392.js.map": "/static/js/main.c2f5c392.js.map",
+    "static/media/userIcon.svg": "/static/media/userIcon.25e1106d9f6e21cb0f6004455d105913.svg",
+    "main.ce968945.css.map": "/static/css/main.ce968945.css.map",
+    "main.d93f2cf0.js.map": "/static/js/main.d93f2cf0.js.map",
     "488.3a552b87.chunk.js.map": "/static/js/488.3a552b87.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.92845fcb.css",
-    "static/js/main.c2f5c392.js"
+    "static/css/main.ce968945.css",
+    "static/js/main.d93f2cf0.js"
   ]
 }
