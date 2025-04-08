@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.a26cd64b.css",
-    "main.js": "/static/js/main.51b9e0ab.js",
+    "main.js": "/static/js/main.9f632fb0.js",
     "static/js/488.3a552b87.chunk.js": "/static/js/488.3a552b87.chunk.js",
     "static/media/WellcomeImg.png": "/static/media/WellcomeImg.57bf9a5d33d48ca24f95.png",
     "static/media/Heart.png": "/static/media/Heart.66cd32c8a379830f858e.png",
@@ -24,11 +24,11 @@
     "index.html": "/index.html",
     "static/media/userIcon.svg": "/static/media/userIcon.25e1106d9f6e21cb0f6004455d105913.svg",
     "main.a26cd64b.css.map": "/static/css/main.a26cd64b.css.map",
-    "main.51b9e0ab.js.map": "/static/js/main.51b9e0ab.js.map",
+    "main.9f632fb0.js.map": "/static/js/main.9f632fb0.js.map",
     "488.3a552b87.chunk.js.map": "/static/js/488.3a552b87.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a26cd64b.css",
-    "static/js/main.51b9e0ab.js"
+    "static/js/main.9f632fb0.js"
   ]
 }
