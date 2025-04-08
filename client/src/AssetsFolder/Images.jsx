@@ -29,6 +29,7 @@ import ActiveLevel from "./ActiveLevel.png";
 import DisactiveLevel from "./DisactiveLevel.png";
 import NewWorld from "./NewWorld.png";
 import Heart from "./Heart.png";
+import Image from "./image.jpg";
 
 export { Logo };
 export { WelcomeImg };
@@ -47,3 +48,4 @@ export { Robot };
 export { Send };
 export { SceneImg, ActiveLevel, DisactiveLevel };
 export { NewWorld, Heart };
+export { Image };

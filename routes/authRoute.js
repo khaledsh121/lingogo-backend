@@ -2,32 +2,74 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const multer = require("multer");
+
 const SECRET_KEY =
   process.env.SECRET_KEY ||
   "4f8b2c1e3a9d7f6e5b4a1c8d0e2f7b3a6d9c8e1f2a7b4c5d6e9f0a1b2c3d4e5";
 const router = express.Router();
 
-router.post("/signup", async (req, res) => {
+const upload = multer({
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB size limit
+  dest: "uploads/", // Destination folder for uploaded images
+});
+
+router.get("/checkEmail", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { email, userName } = req.query;
+
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(200).json({ existEmail: true });
+    }
+
+    const existingName = await User.findOne({ username: userName });
+    if (existingName) {
+      return res.status(200).json({ existName: true });
+    }
+
+    return res.status(200).json({ exist: false });
+  } catch (error) {
+    console.error("Error in /checkEmail:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+router.post("/signup", upload.single("userImg"), async (req, res) => {
+  try {
+    const {
+      username,
+      email,
+      password,
+      birthDate,
+      nativeLanguage,
+      languageToLearn,
+    } = req.body;
+
+    const userImg = req.file ? req.file.path : "";
 
     const existingUser = await User.findOne({
-      $or: [{ email }, { username }],
+      $or: [{ email }],
     });
     if (existingUser) {
       return res
         .status(400)
-        .json({ message: "User already exists", success: false });
+        .json({ message: "User already exists", success: false, errorAt: 1 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      birthDate,
+      userImg,
+      nativeLanguage,
+      languageToLearn,
+    });
 
-    await newUser
-      .save()
-      .then((user) => console.log("User saved:", user))
-      .catch((err) => console.error("Error saving user:", err));
+    await newUser.save();
 
     const token = jwt.sign({ id: newUser._id }, SECRET_KEY);
     res.status(201).json({

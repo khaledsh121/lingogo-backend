@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -19,13 +20,17 @@ mongoose
   });
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Adjust if frontend runs on a different port
+  origin: "http://localhost:3000",
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"], // Allow the Authorization header
+  allowedHeaders: ["Content-Type", "Authorization"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
 
 app.use(cors(corsOptions));
+
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.options("*", cors(corsOptions));
 
@@ -45,6 +50,8 @@ const navigateRoute = require("./routes/navigateRoute");
 
 const getLevelRoute = require("./routes/levelRoute");
 
+const getUserInfo = require("./routes/userInfo");
+
 app.use("/auth", authRoute);
 
 app.use("/imgsearch", imagesSearch);
@@ -58,6 +65,8 @@ app.use("/presentationRoute", presentationRoute);
 app.use("/navigate", navigateRoute);
 
 app.use("/getlevel", getLevelRoute);
+
+app.use("/getUserData", getUserInfo);
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 

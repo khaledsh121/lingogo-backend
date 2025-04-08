@@ -7,24 +7,23 @@ import {
   ActiveLevel,
   DisactiveLevel,
 } from "../../AssetsFolder/Images";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { getUserLevel } from "../../Utils/Utils";
 
 const RealScenarioSelectLevel = () => {
+  const location = useLocation();
   const levels = 20;
   const containerWidth = 300;
   const [positions, setPositions] = useState([]);
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState(
+    location?.state?.currentLevel || 1
+  );
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const navigate = useNavigate();
 
   const handleLevelClick = (index) => {
-    if (index + 1 === currentLevel) {
-      setCurrentLevel(currentLevel + 1);
-      navigate("/level", { state: { index } });
-    } else if (index + 1 < currentLevel) {
-      navigate("/level", { state: { index } });
-    }
+    navigate("/level", { state: { index } });
   };
 
   useEffect(() => {
@@ -34,6 +33,14 @@ const RealScenarioSelectLevel = () => {
         y: i * 130,
       }))
     );
+  }, []);
+
+  useEffect(() => {
+    const fetchUserLevel = async () => {
+      const userLevel = await getUserLevel();
+      setCurrentLevel(userLevel);
+    };
+    fetchUserLevel();
   }, []);
 
   return (
@@ -71,10 +78,26 @@ const RealScenarioSelectLevel = () => {
                       transform: hoveredIndex === i ? "scale(0.7)" : "scale(1)",
                       transition: "transform 0.3s ease-in-out",
                     }}
-                    onMouseDown={() => setHoveredIndex(i)}
-                    onMouseUp={() => setHoveredIndex(null)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                    onClick={() => handleLevelClick(i)}
+                    onMouseDown={
+                      i + 1 <= currentLevel
+                        ? () => setHoveredIndex(i)
+                        : undefined
+                    }
+                    onMouseUp={
+                      i + 1 <= currentLevel
+                        ? () => setHoveredIndex(null)
+                        : undefined
+                    }
+                    onMouseLeave={
+                      i + 1 <= currentLevel
+                        ? () => setHoveredIndex(null)
+                        : undefined
+                    }
+                    onClick={
+                      i + 1 <= currentLevel
+                        ? () => handleLevelClick(i)
+                        : undefined
+                    }
                   />
 
                   {i < positions.length - 1 &&

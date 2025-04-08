@@ -2,14 +2,29 @@ import "../Presentation/Presentation.css";
 import PagesList from "../PagesList/PagesList";
 import { ToDoList } from "../../AssetsFolder/Images";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getPresentations } from "../../Utils/Utils";
 
 const Presentation = () => {
-  const userPresentations = [];
+  const [userPresentations, setUserPresentations] = useState([]);
   const navigate = useNavigate();
 
   const handleCreatePresentationClick = () => {
     navigate("/CreatePresentation");
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPresentations();
+        setUserPresentations(data);
+      } catch (error) {
+        console.error("Error fetching presentations:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="presentation-container">
@@ -25,17 +40,29 @@ const Presentation = () => {
           </div>
         </div>
         {userPresentations.length > 0 ? (
-          <scroll className="scroll">
-            {userPresentations.map((item) => {
+          <div className="scroll">
+            {userPresentations.map((item, index) => {
               return (
-                <div className="pre">
-                  {/* <img src={item[0].ImgSrc} alt="user presentation img" /> */}
-                </div>
+                <img
+                  src={item.slides[0].source}
+                  alt="user presentation img"
+                  className="previos-presentation-firt-pic"
+                  key={index}
+                  onClick={() => {
+                    navigate("/ShowPresentation", {
+                      state: { presentation: item },
+                    });
+                  }}
+                />
               );
             })}
-          </scroll>
+          </div>
         ) : (
-          <img src={ToDoList} alt="to Do List" />
+          <img
+            src={ToDoList}
+            alt="to Do List"
+            className="no-presntarion-created"
+          />
         )}
       </div>
     </div>

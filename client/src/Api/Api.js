@@ -1,6 +1,1 @@
-import axios from "axios";
-
-axios
-  .get("http://localhost:5000/test")
-  .then((res) => console.log(res.data))
-  .catch((err) => console.error(err));
+export const serverURI = "https://lingogo-backend-production.up.railway.app/";

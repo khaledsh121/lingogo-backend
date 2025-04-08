@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const Presentation = require("../models/presentation");
-const authMiddleware = require("../middleware/authMiddleware"); // Middleware to verify JWT
+const authMiddleware = require("../middleware/authMiddleware");
+const User = require("../models/user");
 
 router.post("/save", authMiddleware, async (req, res) => {
   try {
     const { translatingFrom, translatingTo, slides } = req.body;
     const userId = req.user.id;
+    const user = await User.findById(userId);
 
     if (!translatingFrom || !translatingTo || !slides || slides.length === 0) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Create a new presentation
     const newPresentation = new Presentation({
       userId,
       translatingFrom,
@@ -21,6 +22,8 @@ router.post("/save", authMiddleware, async (req, res) => {
     });
 
     await newPresentation.save();
+    user.PresentationsNumber++;
+    await user.save();
 
     res.status(201).json({
       message: "Presentation saved successfully",

@@ -13,8 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  padding-left: 7%;
+  justify-content: space-around;
 }
 
 .show-all-slides {
@@ -32,6 +31,8 @@
 .show-all-slides::-webkit-scrollbar {
   width: 0.5vw;
   min-width: 5px;
+  min-height: 5px;
+  height: 0.5vh;
 }
 
 .show-all-slides::-webkit-scrollbar-track {
@@ -56,6 +57,33 @@
   align-items: center;
   border-radius: 15px;
 }
+.image-loading {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+.Previous-slide:hover {
+  cursor: pointer;
+}
 
 .show-all-slides img {
   width: 100%;
@@ -73,9 +101,13 @@
   font-size: clamp(15px, 3vh, 1000px);
 }
 
+.show-all-slides button:hover {
+  cursor: pointer;
+}
+
 .create-presentation-process {
   width: 60%;
-  height: 60vh;
+  height: 75vh;
   background-color: #6918e81a;
   display: flex;
   flex-direction: column;
@@ -88,18 +120,19 @@
   width: 90%;
   height: 10%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 3%;
 }
 
 .native-language-input-container input {
   width: 80%;
   height: 100%;
-  border: none;
+  border: 1px, solid, #000000;
   border-radius: 15px;
   position: relative;
   background-color: transparent;
   font-size: clamp(15px, 2vw, 1000px);
+  padding-left: 10px;
 }
 
 .create-presentation-process input::placeholder {
@@ -120,7 +153,9 @@
   color: #ffffff;
   font-size: clamp(15px, 1.1vw, 1000px);
 }
-
+.native-language-input-container select:hover {
+  cursor: pointer;
+}
 .create-presentation-process img {
   width: 60%;
   max-height: 60%;
@@ -133,15 +168,17 @@
   font-size: clamp(15px, 2vw, 1000px);
   text-align: center;
 }
-
 .finsh-presentation-btn-container {
-  width: 12%;
-  height: 60vh;
+  width: 100%;
   display: flex;
-  align-items: flex-end;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5%;
+  gap: 5%;
+  color: #6918e8;
 }
 .finsh-presentation-btn-container button {
-  width: 100%;
+  width: 20%;
   height: 5vh;
   min-height: 20px;
   background-color: #6918e8;
@@ -150,9 +187,13 @@
   color: #ffffff;
 }
 
+.finsh-presentation-btn-container button:hover {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 1200px) {
   .create-proccess {
-    justify-content: center;
+    /* justify-content: center; */
     gap: 4%;
   }
   .create-presentation-process {
@@ -166,7 +207,7 @@
 @media only screen and (max-width: 900px) {
   .show-all-slides {
     display: flex;
-    width: 100%;
+    width: 80%;
     height: auto;
     max-height: 40vh;
     position: relative;
@@ -177,24 +218,24 @@
     padding: 10px;
     gap: 10px;
     z-index: 1;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  .show-all-slides button {
+    width: 20%;
   }
   .Previous-slide {
     width: 20%;
     flex-shrink: 0;
   }
-  .show-all-slides::-webkit-scrollbar {
-    display: none;
-  }
+
   .create-proccess {
     justify-content: center;
     padding: 0;
     height: 60vh;
     padding-bottom: 15px;
   }
-  .finsh-presentation-btn-container {
-    height: 20px;
-    min-width: 50px;
-  }
+
   .create-presentation-process {
     width: 80%;
 
