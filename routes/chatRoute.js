@@ -17,7 +17,7 @@ let currentPanel = 0;
 const launchBrowser = async () => {
   if (!browser) {
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",

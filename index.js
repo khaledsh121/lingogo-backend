@@ -52,6 +52,8 @@ const getLevelRoute = require("./routes/levelRoute");
 
 const getUserInfo = require("./routes/userInfo");
 
+const predictPerformance = require("./routes/predictPerformance");
+
 app.use("/auth", authRoute);
 
 app.use("/imgsearch", imagesSearch);
@@ -67,6 +69,8 @@ app.use("/navigate", navigateRoute);
 app.use("/getlevel", getLevelRoute);
 
 app.use("/getUserData", getUserInfo);
+
+app.use("/predictPerformance", predictPerformance);
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
